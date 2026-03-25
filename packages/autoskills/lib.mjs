@@ -10,7 +10,10 @@ export const SKILLS_MAP = [
     detect: {
       packages: ['react', 'react-dom'],
     },
-    repos: ['vercel-labs/agent-skills'],
+    skills: [
+      'vercel-labs/agent-skills/vercel-react-best-practices',
+      'vercel-labs/agent-skills/vercel-composition-patterns',
+    ],
   },
   {
     id: 'nextjs',
@@ -19,7 +22,11 @@ export const SKILLS_MAP = [
       packages: ['next'],
       configFiles: ['next.config.js', 'next.config.mjs', 'next.config.ts'],
     },
-    repos: ['vercel-labs/next-skills'],
+    skills: [
+      'vercel-labs/next-skills/next-best-practices',
+      'vercel-labs/next-skills/next-cache-components',
+      'vercel-labs/next-skills/next-upgrade',
+    ],
   },
   {
     id: 'vue',
@@ -27,7 +34,12 @@ export const SKILLS_MAP = [
     detect: {
       packages: ['vue'],
     },
-    repos: ['hyf0/vue-skills', 'antfu/skills'],
+    skills: [
+      'hyf0/vue-skills/vue-best-practices',
+      'hyf0/vue-skills/vue-debug-guides',
+      'antfu/skills/vue',
+      'antfu/skills/vue-best-practices',
+    ],
   },
   {
     id: 'nuxt',
@@ -36,7 +48,9 @@ export const SKILLS_MAP = [
       packages: ['nuxt'],
       configFiles: ['nuxt.config.js', 'nuxt.config.ts'],
     },
-    repos: ['hyf0/vue-skills'],
+    skills: [
+      'antfu/skills/nuxt',
+    ],
   },
   {
     id: 'svelte',
@@ -45,7 +59,7 @@ export const SKILLS_MAP = [
       packages: ['svelte', '@sveltejs/kit'],
       configFiles: ['svelte.config.js'],
     },
-    repos: [],
+    skills: [],
   },
   {
     id: 'angular',
@@ -54,7 +68,7 @@ export const SKILLS_MAP = [
       packages: ['@angular/core'],
       configFiles: ['angular.json'],
     },
-    repos: [],
+    skills: [],
   },
   {
     id: 'astro',
@@ -63,7 +77,7 @@ export const SKILLS_MAP = [
       packages: ['astro'],
       configFiles: ['astro.config.mjs', 'astro.config.js', 'astro.config.ts'],
     },
-    repos: [],
+    skills: [],
   },
   {
     id: 'tailwind',
@@ -72,7 +86,9 @@ export const SKILLS_MAP = [
       packages: ['tailwindcss', '@tailwindcss/vite'],
       configFiles: ['tailwind.config.js', 'tailwind.config.ts', 'tailwind.config.cjs'],
     },
-    repos: ['wshobson/agents'],
+    skills: [
+      'wshobson/agents/tailwind-design-system',
+    ],
   },
   {
     id: 'shadcn',
@@ -80,7 +96,9 @@ export const SKILLS_MAP = [
     detect: {
       configFiles: ['components.json'],
     },
-    repos: ['shadcn/ui'],
+    skills: [
+      'shadcn/ui/shadcn',
+    ],
   },
   {
     id: 'typescript',
@@ -89,7 +107,9 @@ export const SKILLS_MAP = [
       packages: ['typescript'],
       configFiles: ['tsconfig.json'],
     },
-    repos: ['wshobson/agents'],
+    skills: [
+      'wshobson/agents/typescript-advanced-types',
+    ],
   },
   {
     id: 'supabase',
@@ -97,7 +117,9 @@ export const SKILLS_MAP = [
     detect: {
       packages: ['@supabase/supabase-js', '@supabase/ssr'],
     },
-    repos: ['supabase/agent-skills'],
+    skills: [
+      'supabase/agent-skills/supabase-postgres-best-practices',
+    ],
   },
   {
     id: 'neon',
@@ -105,7 +127,9 @@ export const SKILLS_MAP = [
     detect: {
       packages: ['@neondatabase/serverless'],
     },
-    repos: ['neondatabase/agent-skills'],
+    skills: [
+      'neondatabase/agent-skills/neon-postgres',
+    ],
   },
   {
     id: 'playwright',
@@ -114,7 +138,9 @@ export const SKILLS_MAP = [
       packages: ['@playwright/test', 'playwright'],
       configFiles: ['playwright.config.ts', 'playwright.config.js'],
     },
-    repos: ['currents-dev/playwright-best-practices-skill'],
+    skills: [
+      'currents-dev/playwright-best-practices-skill/playwright-best-practices',
+    ],
   },
   {
     id: 'expo',
@@ -122,7 +148,17 @@ export const SKILLS_MAP = [
     detect: {
       packages: ['expo'],
     },
-    repos: ['expo/skills'],
+    skills: [
+      'expo/skills/building-native-ui',
+      'expo/skills/native-data-fetching',
+      'expo/skills/upgrading-expo',
+      'expo/skills/expo-tailwind-setup',
+      'expo/skills/expo-dev-client',
+      'expo/skills/expo-deployment',
+      'expo/skills/expo-cicd-workflows',
+      'expo/skills/expo-api-routes',
+      'expo/skills/use-dom',
+    ],
   },
   {
     id: 'react-native',
@@ -130,7 +166,9 @@ export const SKILLS_MAP = [
     detect: {
       packages: ['react-native'],
     },
-    repos: ['sleekdotdesign/agent-skills'],
+    skills: [
+      'sleekdotdesign/agent-skills/sleek-design-mobile-apps',
+    ],
   },
   {
     id: 'remotion',
@@ -138,7 +176,9 @@ export const SKILLS_MAP = [
     detect: {
       packages: ['remotion', '@remotion/cli'],
     },
-    repos: ['remotion-dev/skills'],
+    skills: [
+      'remotion-dev/skills/remotion-best-practices',
+    ],
   },
   {
     id: 'better-auth',
@@ -146,7 +186,12 @@ export const SKILLS_MAP = [
     detect: {
       packages: ['better-auth'],
     },
-    repos: ['better-auth/skills'],
+    skills: [
+      'better-auth/skills/better-auth-best-practices',
+      'better-auth/skills/email-and-password-best-practices',
+      'better-auth/skills/organization-best-practices',
+      'better-auth/skills/two-factor-authentication-best-practices',
+    ],
   },
   {
     id: 'turborepo',
@@ -155,7 +200,9 @@ export const SKILLS_MAP = [
       packages: ['turbo'],
       configFiles: ['turbo.json'],
     },
-    repos: ['vercel/turborepo'],
+    skills: [
+      'vercel/turborepo/turborepo',
+    ],
   },
   {
     id: 'vite',
@@ -164,7 +211,9 @@ export const SKILLS_MAP = [
       packages: ['vite'],
       configFiles: ['vite.config.js', 'vite.config.ts', 'vite.config.mjs'],
     },
-    repos: ['antfu/skills'],
+    skills: [
+      'antfu/skills/vite',
+    ],
   },
   {
     id: 'azure',
@@ -172,7 +221,12 @@ export const SKILLS_MAP = [
     detect: {
       packagePatterns: [/^@azure\//],
     },
-    repos: ['microsoft/github-copilot-for-azure', 'microsoft/azure-skills'],
+    skills: [
+      'microsoft/github-copilot-for-azure/azure-deploy',
+      'microsoft/github-copilot-for-azure/azure-ai',
+      'microsoft/github-copilot-for-azure/azure-cost-optimization',
+      'microsoft/github-copilot-for-azure/azure-diagnostics',
+    ],
   },
   {
     id: 'vercel-ai',
@@ -180,7 +234,9 @@ export const SKILLS_MAP = [
     detect: {
       packages: ['ai', '@ai-sdk/openai', '@ai-sdk/anthropic', '@ai-sdk/google'],
     },
-    repos: ['vercel/ai'],
+    skills: [
+      'vercel/ai/ai-sdk',
+    ],
   },
   {
     id: 'elevenlabs',
@@ -188,7 +244,10 @@ export const SKILLS_MAP = [
     detect: {
       packages: ['elevenlabs'],
     },
-    repos: ['inferen-sh/skills'],
+    skills: [
+      'inferen-sh/skills/elevenlabs-tts',
+      'inferen-sh/skills/elevenlabs-music',
+    ],
   },
   {
     id: 'vercel-deploy',
@@ -197,7 +256,9 @@ export const SKILLS_MAP = [
       configFiles: ['vercel.json'],
       packages: ['vercel'],
     },
-    repos: ['vercel-labs/agent-skills'],
+    skills: [
+      'vercel-labs/agent-skills/deploy-to-vercel',
+    ],
   },
   {
     id: 'cloudflare',
@@ -206,7 +267,7 @@ export const SKILLS_MAP = [
       packages: ['wrangler', '@cloudflare/workers-types'],
       configFiles: ['wrangler.toml', 'wrangler.json'],
     },
-    repos: [],
+    skills: [],
   },
   {
     id: 'aws',
@@ -214,7 +275,7 @@ export const SKILLS_MAP = [
     detect: {
       packagePatterns: [/^@aws-sdk\//, /^aws-cdk/],
     },
-    repos: [],
+    skills: [],
   },
   {
     id: 'swiftui',
@@ -222,7 +283,50 @@ export const SKILLS_MAP = [
     detect: {
       configFiles: ['Package.swift'],
     },
-    repos: ['avdlee/swiftui-agent-skill'],
+    skills: [
+      'avdlee/swiftui-agent-skill/swiftui-expert-skill',
+    ],
+  },
+]
+
+// ── Combo Skills Map (cross-technology) ──────────────────────
+
+export const COMBO_SKILLS_MAP = [
+  {
+    id: 'expo-tailwind',
+    name: 'Expo + Tailwind CSS',
+    requires: ['expo', 'tailwind'],
+    skills: ['expo/skills/expo-tailwind-setup'],
+  },
+  {
+    id: 'nextjs-supabase',
+    name: 'Next.js + Supabase',
+    requires: ['nextjs', 'supabase'],
+    skills: ['supabase/agent-skills/supabase-postgres-best-practices'],
+  },
+  {
+    id: 'react-native-expo',
+    name: 'React Native + Expo',
+    requires: ['react-native', 'expo'],
+    skills: ['expo/skills/building-native-ui', 'sleekdotdesign/agent-skills/sleek-design-mobile-apps'],
+  },
+  {
+    id: 'nextjs-vercel-ai',
+    name: 'Next.js + Vercel AI SDK',
+    requires: ['nextjs', 'vercel-ai'],
+    skills: ['vercel/ai/ai-sdk', 'vercel-labs/next-skills/next-best-practices'],
+  },
+  {
+    id: 'nextjs-playwright',
+    name: 'Next.js + Playwright',
+    requires: ['nextjs', 'playwright'],
+    skills: ['currents-dev/playwright-best-practices-skill/playwright-best-practices'],
+  },
+  {
+    id: 'react-shadcn',
+    name: 'React + shadcn/ui',
+    requires: ['react', 'shadcn'],
+    skills: ['shadcn/ui/shadcn', 'vercel-labs/agent-skills/vercel-react-best-practices'],
   },
 ]
 
@@ -231,8 +335,8 @@ export const FRONTEND_PACKAGES = [
   'solid-js', 'lit', 'preact', 'nuxt', '@sveltejs/kit',
 ]
 
-export const FRONTEND_BONUS_REPOS = [
-  'anthropics/skills',
+export const FRONTEND_BONUS_SKILLS = [
+  'anthropics/skills/frontend-design',
 ]
 
 // ── Detection ─────────────────────────────────────────────────
@@ -285,37 +389,65 @@ export function detectTechnologies(projectDir) {
   }
 
   const isFrontend = allPackages.some((p) => FRONTEND_PACKAGES.includes(p))
-  return { detected, isFrontend }
+
+  const detectedIds = detected.map((t) => t.id)
+  const combos = detectCombos(detectedIds)
+
+  return { detected, isFrontend, combos }
 }
 
-// ── Repo Collection ───────────────────────────────────────────
+export function detectCombos(detectedIds) {
+  return COMBO_SKILLS_MAP.filter((combo) =>
+    combo.requires.every((id) => detectedIds.includes(id))
+  )
+}
 
-export function collectRepos(detected, isFrontend) {
+// ── Helpers ──────────────────────────────────────────────────
+
+export function parseSkillPath(skill) {
+  const parts = skill.split('/')
+  return {
+    repo: parts.slice(0, 2).join('/'),
+    skillName: parts.slice(2).join('/'),
+    full: skill,
+  }
+}
+
+// ── Skill Collection ─────────────────────────────────────────
+
+export function collectSkills(detected, isFrontend, combos = []) {
   const seen = new Set()
-  const repos = []
+  const skills = []
+
+  function addSkill(skill, source) {
+    if (!seen.has(skill)) {
+      seen.add(skill)
+      skills.push({ skill, sources: [source] })
+    } else {
+      const existing = skills.find((s) => s.skill === skill)
+      if (existing && !existing.sources.includes(source)) {
+        existing.sources.push(source)
+      }
+    }
+  }
 
   for (const tech of detected) {
-    for (const repo of tech.repos) {
-      if (!seen.has(repo)) {
-        seen.add(repo)
-        repos.push({ repo, sources: [tech.name] })
-      } else {
-        const existing = repos.find((r) => r.repo === repo)
-        if (existing && !existing.sources.includes(tech.name)) {
-          existing.sources.push(tech.name)
-        }
-      }
+    for (const skill of tech.skills) {
+      addSkill(skill, tech.name)
+    }
+  }
+
+  for (const combo of combos) {
+    for (const skill of combo.skills) {
+      addSkill(skill, combo.name)
     }
   }
 
   if (isFrontend) {
-    for (const repo of FRONTEND_BONUS_REPOS) {
-      if (!seen.has(repo)) {
-        seen.add(repo)
-        repos.push({ repo, sources: ['Frontend'] })
-      }
+    for (const skill of FRONTEND_BONUS_SKILLS) {
+      addSkill(skill, 'Frontend')
     }
   }
 
-  return repos
+  return skills
 }

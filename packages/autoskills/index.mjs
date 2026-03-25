@@ -3,7 +3,7 @@
 import { resolve } from 'node:path'
 import { spawn } from 'node:child_process'
 import { createInterface } from 'node:readline'
-import { detectTechnologies, collectRepos } from './lib.mjs'
+import { detectTechnologies, collectSkills, parseSkillPath } from './lib.mjs'
 
 // ── ANSI Colors ───────────────────────────────────────────────
 
@@ -140,9 +140,10 @@ function multiSelect(items, { labelFn, hintFn }) {
 
 // ── Installation ──────────────────────────────────────────────
 
-function installRepo(repo) {
+function installSkill(skillPath) {
+  const { repo, skillName } = parseSkillPath(skillPath)
   return new Promise((resolve) => {
-    const child = spawn('npx', ['-y', 'skills', 'add', repo, '-y'], {
+    const child = spawn('npx', ['-y', 'skills', 'add', repo, '--skill', skillName, '-y'], {
       stdio: ['pipe', 'pipe', 'pipe'],
     })
 
@@ -151,13 +152,11 @@ function installRepo(repo) {
     child.stderr?.on('data', (d) => { output += d.toString() })
 
     child.on('close', (code) => {
-      const foundMatch = output.match(/Found (\d+) skills?/)
-      const skillCount = foundMatch ? parseInt(foundMatch[1], 10) : 0
-      resolve({ success: code === 0, output, skillCount })
+      resolve({ success: code === 0, output })
     })
 
     child.on('error', (err) => {
-      resolve({ success: false, output: err.message, skillCount: 0 })
+      resolve({ success: false, output: err.message })
     })
   })
 }
@@ -180,7 +179,7 @@ async function main() {
 
   ${bold('Options:')}
     -y, --yes       Skip confirmation prompt
-    --dry-run       Show repos without installing
+    --dry-run       Show skills without installing
     -h, --help      Show this help message
 
   ${dim('Powered by https://skills.sh')}
@@ -194,7 +193,7 @@ async function main() {
 
   // ── Detect technologies
   process.stdout.write(dim('   Scanning project...\r'))
-  const { detected, isFrontend } = detectTechnologies(projectDir)
+  const { detected, isFrontend, combos } = detectTechnologies(projectDir)
   process.stdout.write('\x1b[K')
 
   if (detected.length === 0) {
@@ -205,41 +204,52 @@ async function main() {
   }
 
   // ── Show detected technologies
-  const withRepos = detected.filter((t) => t.repos.length > 0)
-  const withoutRepos = detected.filter((t) => t.repos.length === 0)
+  const withSkills = detected.filter((t) => t.skills.length > 0)
+  const withoutSkills = detected.filter((t) => t.skills.length === 0)
 
   console.log(bold('   Detected technologies:'))
   console.log()
 
-  for (const tech of withRepos) {
+  for (const tech of withSkills) {
     console.log(green(`     ✔ ${tech.name}`))
   }
-  for (const tech of withoutRepos) {
+  for (const tech of withoutSkills) {
     console.log(dim(`     ● ${tech.name}`) + dim(' (no skills yet)'))
+  }
+
+  if (combos.length > 0) {
+    console.log()
+    console.log(bold('   Detected combos:'))
+    console.log()
+    for (const combo of combos) {
+      console.log(cyan(`     ⚡ ${combo.name}`))
+    }
   }
   console.log()
 
-  // ── Collect unique repos
-  const repos = collectRepos(detected, isFrontend)
+  // ── Collect unique skills
+  const skills = collectSkills(detected, isFrontend, combos)
 
-  if (repos.length === 0) {
-    console.log(yellow('   No skill repos available for your stack yet.'))
+  if (skills.length === 0) {
+    console.log(yellow('   No skills available for your stack yet.'))
     console.log(dim('   Check https://skills.sh for the latest.'))
     console.log()
     process.exit(0)
   }
 
-  const maxRepoLen = Math.max(...repos.map((r) => r.repo.length))
+  const skillNames = skills.map((s) => parseSkillPath(s.skill).skillName)
+  const maxSkillLen = Math.max(...skillNames.map((n) => n.length))
 
   // ── Dry run: just list and exit
   if (dryRun) {
-    console.log(bold(`   Skill repos to install ${dim(`(${repos.length})`)}:`))
+    console.log(bold(`   Skills to install ${dim(`(${skills.length})`)}:`))
     console.log()
-    for (let i = 0; i < repos.length; i++) {
-      const { repo, sources } = repos[i]
-      const pad = ' '.repeat(maxRepoLen - repo.length)
+    for (let i = 0; i < skills.length; i++) {
+      const { skillName } = parseSkillPath(skills[i].skill)
+      const { sources } = skills[i]
+      const pad = ' '.repeat(maxSkillLen - skillName.length)
       const num = String(i + 1).padStart(2, ' ')
-      console.log(dim(`   ${num}.`) + ` ${cyan(repo)}${pad}  ${dim(`← ${sources.join(', ')}`)}`)
+      console.log(dim(`   ${num}.`) + ` ${cyan(skillName)}${pad}  ${dim(`← ${sources.join(', ')}`)}`)
     }
     console.log()
     console.log(dim('   --dry-run: nothing was installed.'))
@@ -248,29 +258,33 @@ async function main() {
   }
 
   // ── Interactive select or auto-yes
-  let selectedRepos
+  let selectedSkills
 
   if (autoYes) {
-    console.log(bold(`   Skill repos to install ${dim(`(${repos.length})`)}:`))
+    console.log(bold(`   Skills to install ${dim(`(${skills.length})`)}:`))
     console.log()
-    for (let i = 0; i < repos.length; i++) {
-      const { repo, sources } = repos[i]
-      const pad = ' '.repeat(maxRepoLen - repo.length)
+    for (let i = 0; i < skills.length; i++) {
+      const { skillName } = parseSkillPath(skills[i].skill)
+      const { sources } = skills[i]
+      const pad = ' '.repeat(maxSkillLen - skillName.length)
       const num = String(i + 1).padStart(2, ' ')
-      console.log(dim(`   ${num}.`) + ` ${cyan(repo)}${pad}  ${dim(`← ${sources.join(', ')}`)}`)
+      console.log(dim(`   ${num}.`) + ` ${cyan(skillName)}${pad}  ${dim(`← ${sources.join(', ')}`)}`)
     }
     console.log()
-    selectedRepos = repos
+    selectedSkills = skills
   } else {
-    console.log(bold(`   Select repos to install ${dim(`(${repos.length} found)`)}:`))
+    console.log(bold(`   Select skills to install ${dim(`(${skills.length} found)`)}:`))
     console.log()
 
-    selectedRepos = await multiSelect(repos, {
-      labelFn: (r) => r.repo + ' '.repeat(maxRepoLen - r.repo.length),
-      hintFn: (r) => `← ${r.sources.join(', ')}`,
+    selectedSkills = await multiSelect(skills, {
+      labelFn: (s) => {
+        const { skillName } = parseSkillPath(s.skill)
+        return skillName + ' '.repeat(maxSkillLen - skillName.length)
+      },
+      hintFn: (s) => `← ${s.sources.join(', ')}`,
     })
 
-    if (selectedRepos.length === 0) {
+    if (selectedSkills.length === 0) {
       console.log()
       console.log(dim('   Nothing selected.'))
       console.log()
@@ -280,26 +294,23 @@ async function main() {
 
   console.log()
 
-  // ── Install repos
+  // ── Install skills
   let installed = 0
   let failed = 0
-  let totalSkills = 0
 
-  for (const { repo } of selectedRepos) {
-    process.stdout.write(dim(`   ◌ ${repo}...`))
+  for (const { skill } of selectedSkills) {
+    const { skillName } = parseSkillPath(skill)
+    process.stdout.write(dim(`   ◌ ${skillName}...`))
 
-    const result = await installRepo(repo)
+    const result = await installSkill(skill)
 
     process.stdout.write('\r\x1b[K')
 
     if (result.success) {
-      const count = result.skillCount || '?'
-      const label = count === 1 ? 'skill' : 'skills'
-      console.log(green(`   ✔ ${repo}`) + dim(` (${count} ${label})`))
+      console.log(green(`   ✔ ${skillName}`))
       installed++
-      totalSkills += result.skillCount
     } else {
-      console.log(red(`   ✘ ${repo}`) + dim(' — failed'))
+      console.log(red(`   ✘ ${skillName}`) + dim(' — failed'))
       failed++
     }
   }
@@ -308,12 +319,12 @@ async function main() {
   console.log()
   if (failed === 0) {
     console.log(
-      green(bold(`   ✔ Done! ${totalSkills} skills installed from ${installed} repos.`)),
+      green(bold(`   ✔ Done! ${installed} skills installed.`)),
     )
   } else {
     console.log(
       yellow(
-        `   Done: ${green(`${installed} repos installed`)}, ${red(`${failed} failed`)}.`,
+        `   Done: ${green(`${installed} installed`)}, ${red(`${failed} failed`)}.`,
       ),
     )
   }
