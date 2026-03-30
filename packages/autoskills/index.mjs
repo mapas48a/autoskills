@@ -4,7 +4,7 @@ import { resolve, dirname, join } from "node:path";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { detectTechnologies, collectSkills } from "./lib.mjs";
-import { bold, dim, green, yellow, cyan, magenta, red, gray, white, SHOW_CURSOR } from "./colors.mjs";
+import { bold, dim, green, yellow, cyan, magenta, red, gray, white, pink, SHOW_CURSOR } from "./colors.mjs";
 import { printBanner, multiSelect, formatTime } from "./ui.mjs";
 import { installAll } from "./installer.mjs";
 
@@ -142,6 +142,8 @@ function printSummary({ installed, failed, errors, elapsed, verbose }) {
       }
     }
   }
+  console.log();
+  console.log(pink("   Enjoyed autoskills? Consider sponsoring → https://github.com/sponsors/midudev"));
   console.log();
 }
 
