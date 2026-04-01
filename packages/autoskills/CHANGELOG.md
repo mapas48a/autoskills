@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.2.1](https://github.com/midudev/autoskills/releases/tag/v0.2.1) (2026-04-01)
+
+### ✨ Features
+
+- feat: auto-detect installed agents when no -a flag is provided [`0b6c88c`](https://github.com/midudev/autoskills/commit/0b6c88c)
+- feat: add Prisma, Stripe, Hono, Vitest, Drizzle, NestJS and Tauri to skills map [`ba11178`](https://github.com/midudev/autoskills/commit/ba11178)
+- Add Svelte skills to skills-map [`a212de1`](https://github.com/midudev/autoskills/commit/a212de1)
+- feat: update SKILLS_MAP to include new Angular skills [`d33c8db`](https://github.com/midudev/autoskills/commit/d33c8db)
+
+### 📦 Other Changes
+
+- Refactor transition properties in global.css for improved readability [`f1836fa`](https://github.com/midudev/autoskills/commit/f1836fa)
+- Merge pull request #15 from vgpastor/feat/auto-detect-agents [`4ad60cc`](https://github.com/midudev/autoskills/commit/4ad60cc)
+- Merge pull request #13 from PMFrancisco/feat/add-js-ecosystem-skills [`62a2879`](https://github.com/midudev/autoskills/commit/62a2879)
+
 ## [0.2.0](https://github.com/midudev/autoskills/releases/tag/v0.2.0) (2026-03-31)
 
 ### ✨ Features
