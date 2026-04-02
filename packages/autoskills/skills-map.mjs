@@ -226,7 +226,21 @@ export const SKILLS_MAP = [
     id: "clerk",
     name: "Clerk",
     detect: {
-      packages: ["@clerk/nextjs", "@clerk/remix", "@clerk/astro", "@clerk/express", "@clerk/fastify", "@clerk/nuxt", "@clerk/vue", "@clerk/react", "@clerk/expo", "@clerk/tanstack-react-start", "@clerk/react-router", "@clerk/chrome-extension", "@clerk/backend"],
+      packages: [
+        "@clerk/nextjs",
+        "@clerk/remix",
+        "@clerk/astro",
+        "@clerk/express",
+        "@clerk/fastify",
+        "@clerk/nuxt",
+        "@clerk/vue",
+        "@clerk/react",
+        "@clerk/expo",
+        "@clerk/tanstack-react-start",
+        "@clerk/react-router",
+        "@clerk/chrome-extension",
+        "@clerk/backend",
+      ],
       packagePatterns: [/^@clerk\//],
     },
     skills: [
