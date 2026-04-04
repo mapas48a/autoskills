@@ -71,17 +71,7 @@ describe("buildInstallArgs", () => {
 
   it("passes through wildcard agent", () => {
     const args = buildInstallArgs("owner/repo/my-skill", ["*"]);
-    deepEqual(args, [
-      "-y",
-      "skills",
-      "add",
-      "owner/repo",
-      "--skill",
-      "my-skill",
-      "-y",
-      "-a",
-      "*",
-    ]);
+    deepEqual(args, ["-y", "skills", "add", "owner/repo", "--skill", "my-skill", "-y", "-a", "*"]);
   });
 
   it("handles skill path without skill name", () => {

@@ -194,9 +194,7 @@ describe("collectSkills", () => {
     const combos = [{ id: "test-combo", name: "Test Combo", skills: ["combo/repo/combo-skill"] }];
     const skills = collectSkills(detected, true, combos);
 
-    ok(
-      skills.some((s) => s.skill === "vercel-labs/agent-skills/vercel-react-best-practices"),
-    );
+    ok(skills.some((s) => s.skill === "vercel-labs/agent-skills/vercel-react-best-practices"));
     ok(skills.some((s) => s.skill === "combo/repo/combo-skill"));
     ok(skills.some((s) => s.skill === "anthropics/skills/frontend-design"));
   });

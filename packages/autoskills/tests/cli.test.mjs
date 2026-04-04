@@ -364,11 +364,7 @@ describe("CLI", () => {
     });
 
     it("detects web frontend from .tpl files (PrestaShop)", () => {
-      writeFile(
-        tmp.path,
-        "themes/classic/templates/index.tpl",
-        "{block name='content'}{/block}",
-      );
+      writeFile(tmp.path, "themes/classic/templates/index.tpl", "{block name='content'}{/block}");
 
       const output = run(["--dry-run"], tmp.path);
 

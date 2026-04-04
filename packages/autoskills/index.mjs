@@ -220,9 +220,7 @@ function printSummary({ installed, failed, errors, elapsed, verbose }) {
   }
 
   log();
-  log(
-    pink("   Enjoyed autoskills? Consider sponsoring → https://github.com/sponsors/midudev"),
-  );
+  log(pink("   Enjoyed autoskills? Consider sponsoring → https://github.com/sponsors/midudev"));
   log();
 }
 

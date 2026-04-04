@@ -1,6 +1,7 @@
 # AGENTS
 
 <!-- fendo:start -->
+
 ## Supply Chain Security
 
 This project has been hardened against supply chain attacks using [fendo](https://github.com/midudev/fendo).

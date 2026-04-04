@@ -68,11 +68,17 @@ export function resolveSkillsBin() {
   if (_resolvedBin !== undefined) return _resolvedBin;
   try {
     const npx = getNpxCommand();
-    execFileSync(npx, ["-y", "skills", "--version"],
-      { encoding: "utf-8", timeout: 30_000, stdio: "pipe" });
+    execFileSync(npx, ["-y", "skills", "--version"], {
+      encoding: "utf-8",
+      timeout: 30_000,
+      stdio: "pipe",
+    });
     const whichCmd = process.platform === "win32" ? "where" : "which";
-    const binPath = execFileSync(whichCmd, ["skills"],
-      { encoding: "utf-8", timeout: 5_000, stdio: "pipe" }).trim();
+    const binPath = execFileSync(whichCmd, ["skills"], {
+      encoding: "utf-8",
+      timeout: 5_000,
+      stdio: "pipe",
+    }).trim();
     _resolvedBin = binPath || null;
   } catch {
     _resolvedBin = null;
@@ -260,10 +266,7 @@ async function installAllSimple(skills, agents = []) {
     }
   }
 
-  const workers = Array.from(
-    { length: Math.min(CONCURRENCY, sorted.length) },
-    () => worker(),
-  );
+  const workers = Array.from({ length: Math.min(CONCURRENCY, sorted.length) }, () => worker());
   await Promise.all(workers);
 
   return { installed, failed, errors };
