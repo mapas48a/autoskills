@@ -223,6 +223,33 @@ export const SKILLS_MAP = [
     skills: ["remotion-dev/skills/remotion-best-practices"],
   },
   {
+    id: "react-router",
+    name: "React Router",
+    detect: {
+      packages: ["react-router", "@react-router/node", "@react-router/dev", "@react-router/serve"],
+    },
+    skills: [],
+  },
+  {
+    id: "tanstack-start",
+    name: "TanStack Start",
+    detect: {
+      packages: ["@tanstack/react-start", "@tanstack/start"],
+    },
+    skills: ["tanstack-skills/tanstack-skills/tanstack-start"],
+  },
+  {
+    id: "chrome-extension",
+    name: "Chrome Extension",
+    detect: {
+      configFileContent: {
+        files: ["manifest.json"],
+        patterns: ["manifest_version"],
+      },
+    },
+    skills: ["mindrally/skills/chrome-extension-development"],
+  },
+  {
     id: "clerk",
     name: "Clerk",
     detect: {
@@ -242,6 +269,16 @@ export const SKILLS_MAP = [
         "@clerk/backend",
       ],
       packagePatterns: [/^@clerk\//],
+      configFileContent: [
+        {
+          files: ["Package.swift"],
+          patterns: ["clerk/clerk-ios", "ClerkSDK"],
+        },
+        {
+          scanGradleLayout: true,
+          patterns: ["com.clerk"],
+        },
+      ],
     },
     skills: [
       "clerk/skills/clerk",
@@ -620,6 +657,56 @@ export const SKILLS_MAP = [
     },
     skills: ["apollographql/skills/rust-best-practices"],
   },
+  {
+    id: "python",
+    name: "Python",
+    detect: {
+      configFiles: ["pyproject.toml", "requirements.txt", "setup.py", "setup.cfg", "Pipfile"],
+    },
+    skills: [],
+  },
+  {
+    id: "django",
+    name: "Django",
+    detect: {
+      configFiles: ["manage.py"],
+      configFileContent: {
+        files: ["pyproject.toml", "requirements.txt", "setup.py", "setup.cfg", "Pipfile"],
+        patterns: ["django", "Django"],
+      },
+    },
+    skills: [],
+  },
+  {
+    id: "fastapi",
+    name: "FastAPI",
+    detect: {
+      configFileContent: {
+        files: ["pyproject.toml", "requirements.txt", "setup.py", "setup.cfg", "Pipfile"],
+        patterns: ["fastapi", "FastAPI"],
+      },
+    },
+    skills: [],
+  },
+  {
+    id: "php",
+    name: "PHP",
+    detect: {
+      configFiles: ["composer.json", "composer.lock"],
+    },
+    skills: ["jeffallan/claude-skills/php-pro"],
+  },
+  {
+    id: "flask",
+    name: "Flask",
+    detect: {
+      configFileContent: {
+        files: ["pyproject.toml", "requirements.txt", "setup.py", "setup.cfg", "Pipfile"],
+        patterns: ["flask", "Flask"],
+      },
+    },
+    skills: [],
+  },
 ];
 
 // ── Combo Skills Map (cross-technology) ──────────────────────
@@ -703,6 +790,48 @@ export const COMBO_SKILLS_MAP = [
     name: "React + React Three Fiber",
     requires: ["threejs", "react", "@react-three/fiber"],
     skills: ["vercel-labs/json-render/react-three-fiber"],
+  },
+  {
+    id: "react-router-clerk",
+    name: "React Router + Clerk",
+    requires: ["react-router", "clerk"],
+    skills: [
+      "clerk/skills/clerk-react-router-patterns",
+      "clerk/skills/clerk-setup",
+      "clerk/skills/clerk",
+    ],
+  },
+  {
+    id: "tanstack-clerk",
+    name: "TanStack Start + Clerk",
+    requires: ["tanstack-start", "clerk"],
+    skills: [
+      "clerk/skills/clerk-tanstack-patterns",
+      "clerk/skills/clerk-setup",
+      "clerk/skills/clerk",
+    ],
+  },
+  {
+    id: "chrome-extension-clerk",
+    name: "Chrome Extension + Clerk",
+    requires: ["chrome-extension", "clerk"],
+    skills: [
+      "clerk/skills/clerk-chrome-extension-patterns",
+      "clerk/skills/clerk-setup",
+      "clerk/skills/clerk",
+    ],
+  },
+  {
+    id: "swiftui-clerk",
+    name: "SwiftUI + Clerk",
+    requires: ["swiftui", "clerk"],
+    skills: ["clerk/skills/clerk-swift", "clerk/skills/clerk-setup", "clerk/skills/clerk"],
+  },
+  {
+    id: "android-clerk",
+    name: "Android + Clerk",
+    requires: ["android", "clerk"],
+    skills: ["clerk/skills/clerk-android", "clerk/skills/clerk-setup", "clerk/skills/clerk"],
   },
 ];
 
