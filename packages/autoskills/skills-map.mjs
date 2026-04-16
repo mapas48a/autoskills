@@ -472,11 +472,6 @@ export const SKILLS_MAP = [
       packages: ["express"],
     },
     skills: [
-      "auth0/agent-skills/auth0-express",
-      "pluginagentmarketplace/custom-plugin-nodejs/express-rest-api",
-      "mindrally/skills/express-typescript",
-      "bobmatnyc/claude-mpm-skills/express-production",
-      "secondsky/claude-skills/zod"
     ],
   },
   {
